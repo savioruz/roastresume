@@ -13,7 +13,10 @@
   import Theme from "$lib/widgets/Theme.svelte";
   import Footer from '$lib/widgets/Footer.svelte';
 
-  const apiUrl = "https://roast.savioruz.me/api/v1/roast/resume"
+  const api = [
+    "https://roast.savioruz.me/api/v1/roast/resume",
+    "https://roastgithub-api.vercel.app/api/v1/roast/resume"
+  ]
   let key : string | null = null;
   let lang : string | null = null;
   let generated_content : string | null = null;
@@ -22,6 +25,11 @@
 
   const langs = ['id', 'en'];
   const languages = langs.map((lang) => ISO6391.getName(lang));
+
+  function getApiUrl(): string {
+    const randomIndex = Math.floor(Math.random() * api.length);
+    return api[randomIndex];
+  }
 
   async function handleSubmit() {
     const file = (document.getElementById("file") as HTMLInputElement).files?.[0];
@@ -49,7 +57,7 @@
     }
 
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch(getApiUrl(), {
         method: "POST",
         body: formData,
       });
