@@ -13,10 +13,7 @@
   import Theme from "$lib/widgets/Theme.svelte";
   import Footer from '$lib/widgets/Footer.svelte';
 
-  const api = [
-    "https://roast.savioruz.me/api/v1/roast/resume",
-    "https://roastgithub-api.vercel.app/api/v1/roast/resume"
-  ]
+  const api = "https://roastgithub-api.vercel.app/api/v1/roast/resume";
   let key : string | null = null;
   let lang : string | null = null;
   let generated_content : string | null = null;
