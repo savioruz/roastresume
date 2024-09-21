@@ -23,11 +23,6 @@
   const langs = ['id', 'en'];
   const languages = langs.map((lang) => ISO6391.getName(lang));
 
-  function getApiUrl(): string {
-    const randomIndex = Math.floor(Math.random() * api.length);
-    return api[randomIndex];
-  }
-
   async function handleSubmit() {
     const file = (document.getElementById("file") as HTMLInputElement).files?.[0];
     if (!file) {
@@ -54,7 +49,7 @@
     }
 
     try {
-      const response = await fetch(getApiUrl(), {
+      const response = await fetch(api, {
         method: "POST",
         body: formData,
       });
